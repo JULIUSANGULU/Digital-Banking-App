@@ -14,7 +14,7 @@ class _InputfieldState extends State<Inputfield> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 400,
+      width: 800,
       height: 80,
       child: Column(
         mainAxisSize: MainAxisSize.min,
