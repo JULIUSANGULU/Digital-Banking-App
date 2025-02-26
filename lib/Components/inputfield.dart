@@ -43,7 +43,7 @@ class _InputfieldState extends State<Inputfield> {
             padding: const EdgeInsets.only(
               top: 19,
               left: 10,
-              right: 221,
+              right: 21,
               bottom: 19,
             ),
             clipBehavior: Clip.antiAlias,
@@ -54,9 +54,9 @@ class _InputfieldState extends State<Inputfield> {
               ),
             ),
             child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              // mainAxisSize: MainAxisSize.min,
+              // mainAxisAlignment: MainAxisAlignment.start,
+              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   widget.placeholder,

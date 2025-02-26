@@ -13,7 +13,7 @@ class _HeaderOneState extends State<HeaderOne> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 244,
+      width: 344,
       child: SizedBox(
         width: 244,
         child: Text(

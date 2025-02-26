@@ -92,4 +92,6 @@ flutter:
   assets:
     - lib/assets/images/image1.png
     - lib/assets/images/image.png
+    - lib/assets/images/fingerprintscan.png
+
 

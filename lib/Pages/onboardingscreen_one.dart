@@ -93,7 +93,7 @@ class _OnboardingscreenOneState extends State<OnboardingscreenOne> {
                                 GestureDetector(
                                   onTap: () async {
                                     await Navigator.pushNamed(
-                                        context, AppRoutes.login);
+                                        context, AppRoutes.accounttype);
                                   },
                                   child: const ButtonSm(
                                     name: "Sign Up",

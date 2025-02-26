@@ -1,3 +1,5 @@
+import 'package:digital_banking_app/Components/button_lg.dart';
+import 'package:digital_banking_app/Components/footer.dart';
 import 'package:digital_banking_app/Components/inputfield.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +19,7 @@ class _LoginState extends State<Login> {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
@@ -35,6 +37,9 @@ class _LoginState extends State<Login> {
                 const Inputfield(
                     label: 'Passcode',
                     placeholder: 'Enter your 6 digit passcode'),
+                const SizedBox(
+                  height: 25,
+                ),
                 SizedBox(
                   width: 400,
                   height: 18,
@@ -89,7 +94,19 @@ class _LoginState extends State<Login> {
                       ),
                     ],
                   ),
-                )
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                const ButtonLg(
+                  name: 'Login',
+                  color: Color(0xFF1976D2),
+                  textColor: Color(0xFFF5F5F5),
+                ),
+                const SizedBox(
+                  height: 200,
+                ),
+                const Footer(),
               ],
             ),
           ),

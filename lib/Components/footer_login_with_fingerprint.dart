@@ -1,14 +1,16 @@
 import 'package:digital_banking_app/Routes/routers.dart';
 import 'package:flutter/material.dart';
 
-class Footer extends StatefulWidget {
-  const Footer({super.key});
+class FooterLoginWithFingerprint extends StatefulWidget {
+  const FooterLoginWithFingerprint({super.key});
 
   @override
-  State<Footer> createState() => _FooterState();
+  State<FooterLoginWithFingerprint> createState() =>
+      _FooterLoginWithFingerprintState();
 }
 
-class _FooterState extends State<Footer> {
+class _FooterLoginWithFingerprintState
+    extends State<FooterLoginWithFingerprint> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -37,11 +39,10 @@ class _FooterState extends State<Footer> {
           const SizedBox(width: 30), // Space after the vertical line
           GestureDetector(
             onTap: () async {
-              await Navigator.pushNamed(
-                  context, AppRoutes.loginwithfingerprint);
+              await Navigator.pushNamed(context, AppRoutes.login);
             },
             child: const Text(
-              'Login with fingerprint',
+              'Login with password',
               style: TextStyle(
                 color: Color(0xFF7B1FA2),
                 fontSize: 14,
