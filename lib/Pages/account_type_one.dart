@@ -3,6 +3,7 @@ import 'package:digital_banking_app/Components/button_lg.dart';
 import 'package:digital_banking_app/Components/header_one.dart';
 import 'package:digital_banking_app/Components/modal_component.dart';
 import 'package:digital_banking_app/Components/progressbar.dart';
+import 'package:digital_banking_app/Routes/routers.dart';
 import 'package:flutter/material.dart';
 
 class AccountTypeOne extends StatefulWidget {
@@ -15,24 +16,24 @@ class AccountTypeOne extends StatefulWidget {
 class _AccountTypeOneState extends State<AccountTypeOne> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Column(
         children: [
-          Padding(
+          const Padding(
             padding: EdgeInsets.fromLTRB(0, 70, 0, 0),
             child: StepProgressIndicator(
               totalSteps: 5,
               currentStep: 0,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          HeaderOne(
+          const HeaderOne(
             header: 'Choose the type of account that fits your needs.',
             textcolor: Color(0xFF979797),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.fromLTRB(25, 50, 0, 0),
             child: Row(
               children: [
@@ -48,27 +49,35 @@ class _AccountTypeOneState extends State<AccountTypeOne> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 200,
           ),
-          ModalComponent(
+          const ModalComponent(
             text: 'Perfect for everyday banking needs, savings, and payments.',
           ),
-          SizedBox(
+          const SizedBox(
             height: 25,
           ),
-          ButtonLg(
-            name: 'Proceed',
-            color: Color(0xFF1976D2),
-            textColor: Color(0xFFF5F5F5),
+          GestureDetector(
+            onTap: () async {
+              await Navigator.pushNamed(context, AppRoutes.personalinfo);
+            },
+            child: const ButtonLg(
+              name: 'Proceed',
+              color: Color(0xFF1976D2),
+              textColor: Color(0xFFF5F5F5),
+            ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
-          ButtonLg(
-            name: 'Go back',
-            color: Color(0xFFF5F5F5),
-            textColor: Colors.black,
+          GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: const ButtonLg(
+              name: 'Go back',
+              color: Color(0xFFF5F5F5),
+              textColor: Colors.black,
+            ),
           ),
         ],
       ),

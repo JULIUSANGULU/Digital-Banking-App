@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class ButtonLg extends StatefulWidget {
   final String name;
-
   final Color color;
   final Color textColor;
   const ButtonLg(
@@ -23,7 +22,7 @@ class _ButtonLgState extends State<ButtonLg> {
       height: 56,
       padding: const EdgeInsets.all(16),
       decoration: ShapeDecoration(
-        color: const Color(0xFF1976D2),
+        color: widget.color,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
         ),
