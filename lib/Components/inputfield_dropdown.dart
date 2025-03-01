@@ -39,13 +39,9 @@ class _InputfieldDropdownState extends State<InputfieldDropdown> {
           ),
           const SizedBox(height: 6),
           Container(
+            width: 400,
             height: 56,
-            padding: const EdgeInsets.only(
-              top: 19,
-              left: 10,
-              right: 221,
-              bottom: 19,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             clipBehavior: Clip.antiAlias,
             decoration: ShapeDecoration(
               color: const Color(0xFFF5F5F5),
