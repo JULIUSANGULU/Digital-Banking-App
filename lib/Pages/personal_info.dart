@@ -89,7 +89,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
           ),
           GestureDetector(
             onTap: () async {
-              await Navigator.pushNamed(context, AppRoutes.verifyyouridentity);
+              await Navigator.pushNamed(context, AppRoutes.signup);
             },
             child: const ButtonLg(
               name: 'Proceed',

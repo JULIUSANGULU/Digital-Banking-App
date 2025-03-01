@@ -29,7 +29,6 @@ class _VerifyYourIdentityState extends State<VerifyYourIdentity> {
             header: 'Choose the type of account that fits your needs.',
             textcolor: Color(0xFF979797),
           ),
-          VerifyYourIdentity(),
         ],
       ),
     );

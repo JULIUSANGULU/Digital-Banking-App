@@ -1,5 +1,6 @@
 import 'package:digital_banking_app/Pages/Login_with_fingerpint.dart';
 import 'package:digital_banking_app/Pages/account_type_one.dart';
+import 'package:digital_banking_app/Pages/address_details.dart';
 import 'package:digital_banking_app/Pages/personal_info.dart';
 import 'package:digital_banking_app/Pages/verify_your_identity.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class AppRoutes {
   static const String accounttype = '/accounttype';
   static const String personalinfo = '/personalinfo';
   static const String verifyyouridentity = '/verifyyouridentity';
+  static const String addressdetails = '/addressdetails';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -32,6 +34,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const PersonalInfo());
       case verifyyouridentity:
         return MaterialPageRoute(builder: (_) => const VerifyYourIdentity());
+      case addressdetails:
+        return MaterialPageRoute(builder: (_) => const AddressDetails());
       default:
         return MaterialPageRoute(
           builder: (_) => const Scaffold(
