@@ -53,58 +53,59 @@ class _TermsOfServiceState extends State<TermsOfService> {
             ),
           ),
           Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: Container(
-                width: 430,
-                height: 210,
-                padding: const EdgeInsets.only(
-                  top: 41,
-                  left: 30,
-                  right: 0,
-                  bottom: 41,
-                ),
-                clipBehavior: Clip.antiAlias,
-                decoration: const BoxDecoration(color: Colors.white),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 380,
-                      height: double.infinity,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          GestureDetector(
-                            onTap: () async {
-                              await Navigator.pushNamed(
-                                  context, AppRoutes.success);
-                            },
-                            child: const ButtonLg(
-                              name: 'Proceed',
-                              color: Color(0xFF1976D2),
-                              textColor: Color(0xFFF5F5F5),
-                            ),
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Container(
+              width: 430,
+              height: 210,
+              padding: const EdgeInsets.only(
+                top: 41,
+                left: 30,
+                right: 0,
+                bottom: 41,
+              ),
+              clipBehavior: Clip.antiAlias,
+              decoration: const BoxDecoration(color: Colors.white),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 380,
+                    height: double.infinity,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        GestureDetector(
+                          onTap: () async {
+                            await Navigator.pushNamed(
+                                context, AppRoutes.success);
+                          },
+                          child: const ButtonLg(
+                            name: 'Proceed',
+                            color: Color(0xFF1976D2),
+                            textColor: Color(0xFFF5F5F5),
                           ),
-                          const SizedBox(height: 16),
-                          GestureDetector(
-                            onTap: () => Navigator.pop(context),
-                            child: const ButtonLg(
-                                name: 'Go back',
-                                color: Color(0xFFF5F5F5),
-                                textColor: Colors.black),
-                          )
-                        ],
-                      ),
+                        ),
+                        const SizedBox(height: 16),
+                        GestureDetector(
+                          onTap: () => Navigator.pop(context),
+                          child: const ButtonLg(
+                              name: 'Go back',
+                              color: Color(0xFFF5F5F5),
+                              textColor: Colors.black),
+                        )
+                      ],
                     ),
-                  ],
-                ),
-              )),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

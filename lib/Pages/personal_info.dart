@@ -2,6 +2,7 @@ import 'package:digital_banking_app/Components/button_lg.dart';
 import 'package:digital_banking_app/Components/header_one.dart';
 import 'package:digital_banking_app/Components/inputfield.dart';
 import 'package:digital_banking_app/Components/progressbar.dart';
+import 'package:digital_banking_app/Components/subheader_text.dart';
 import 'package:digital_banking_app/Routes/routers.dart';
 import 'package:flutter/material.dart';
 
@@ -29,25 +30,12 @@ class _PersonalInfoState extends State<PersonalInfo> {
             height: 20,
           ),
           const HeaderOne(
-            header: 'Choose the type of account that fits your needs.',
+            header: 'Tell Us About Yourself',
             textcolor: Color(0xFF979797),
           ),
-          const SizedBox(
-            width: 299,
-            child: SizedBox(
-              width: 299,
-              child: Text(
-                'We need a few details to set up your account.',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color(0xFF212121),
-                  fontSize: 14,
-                  fontFamily: 'Open Sans',
-                  fontWeight: FontWeight.w400,
-                  height: 1.50,
-                ),
-              ),
-            ),
+          const SubheaderText(
+            text: 'We need a few details to set up your account.',
+            textcolor: Color(0xFF212121),
           ),
           const Padding(
             padding: EdgeInsets.all(16.0),
@@ -89,7 +77,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
           ),
           GestureDetector(
             onTap: () async {
-              await Navigator.pushNamed(context, AppRoutes.addressdetails);
+              await Navigator.pushNamed(context, AppRoutes.verifyyouridentity);
             },
             child: const ButtonLg(
               name: 'Proceed',
