@@ -2,69 +2,112 @@ import 'package:flutter/material.dart';
 
 class InputfieldDropdown extends StatefulWidget {
   final String label;
+  final List<String> options;
   final String placeholder;
-  const InputfieldDropdown(
-      {super.key, required this.label, required this.placeholder});
+  final String? initialValue;
+  final Function(String?)? onChanged;
+
+  const InputfieldDropdown({
+    super.key,
+    required this.label,
+    required this.placeholder,
+    required this.options,
+    this.initialValue,
+    this.onChanged,
+  });
 
   @override
   State<InputfieldDropdown> createState() => _InputfieldDropdownState();
 }
 
 class _InputfieldDropdownState extends State<InputfieldDropdown> {
+  String? _selectedValue;
+  bool _isFocused = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedValue = widget.initialValue;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 400,
+      width: 800,
       height: 80,
       child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            width: double.infinity,
-            child: SizedBox(
-              width: double.infinity,
-              child: Text(
-                widget.label,
-                style: const TextStyle(
-                  color: Color(0xFF393939),
-                  fontSize: 18,
-                  fontFamily: 'Open Sans',
-                  fontWeight: FontWeight.w400,
-                  height: 1,
-                ),
-              ),
+          Text(
+            widget.label,
+            style: const TextStyle(
+              color: Color(0xFF393939),
+              fontSize: 18,
+              fontFamily: 'Open Sans',
+              fontWeight: FontWeight.w400,
+              height: 1,
             ),
           ),
           const SizedBox(height: 6),
-          Container(
-            width: 400,
-            height: 56,
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            clipBehavior: Clip.antiAlias,
-            decoration: ShapeDecoration(
-              color: const Color(0xFFF5F5F5),
-              shape: RoundedRectangleBorder(
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                _isFocused = true;
+              });
+            },
+            child: Container(
+              height: 56,
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                color: _isFocused ? Colors.white : const Color(0xFFF5F5F5),
                 borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  widget.placeholder,
-                  style: const TextStyle(
-                    color: Color(0xFF979797),
-                    fontSize: 16,
-                    fontFamily: 'Open Sans',
-                    fontWeight: FontWeight.w400,
-                    height: 1.12,
-                  ),
+                border: Border.all(
+                  color: _isFocused
+                      ? Theme.of(context).primaryColor
+                      : Colors.transparent,
+                  width: 2, // Stroke width
                 ),
-              ],
+              ),
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton<String>(
+                  value: _selectedValue,
+                  isExpanded: true,
+                  hint: Text(
+                    widget.placeholder,
+                    style: const TextStyle(
+                      color: Color(0xFF979797),
+                      fontSize: 16,
+                      fontFamily: 'Open Sans',
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  icon: const Icon(Icons.arrow_drop_down, color: Colors.black),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _selectedValue = newValue;
+                      _isFocused = false; // Reset focus after selection
+                    });
+                    if (widget.onChanged != null) {
+                      widget.onChanged!(newValue);
+                    }
+                  },
+                  items: widget.options
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontFamily: 'Open Sans',
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
             ),
           ),
         ],

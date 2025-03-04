@@ -16,6 +16,11 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         primarySwatch: Colors.blue,
         fontFamily: 'Open Sans', // Set default font
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blue, // Ensures consistency across widgets
+          primary: Colors.blue, // Explicitly set primary color
+        ),
+        useMaterial3: true, // Optional: Enables Material 3 styling
       ),
       initialRoute: AppRoutes.onboarding, // Set initial route
       onGenerateRoute: AppRoutes.generateRoute, // Use route generator

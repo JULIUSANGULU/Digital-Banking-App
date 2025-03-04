@@ -1,6 +1,7 @@
 import 'package:digital_banking_app/Components/button_lg.dart';
 import 'package:digital_banking_app/Components/header_one.dart';
 import 'package:digital_banking_app/Components/inputfield.dart';
+import 'package:digital_banking_app/Components/inputfield_dropdown.dart';
 import 'package:digital_banking_app/Components/progressbar.dart';
 import 'package:digital_banking_app/Components/subheader_text.dart';
 import 'package:digital_banking_app/Routes/routers.dart';
@@ -61,9 +62,11 @@ class _PersonalInfoState extends State<PersonalInfo> {
                 SizedBox(
                   height: 10,
                 ),
-                Inputfield(
-                    label: 'Nationality',
-                    placeholder: 'Select your nationality'),
+                InputfieldDropdown(
+                  label: 'Nationality',
+                  placeholder: 'Select your nationality',
+                  options: ['Nigerian'],
+                ),
                 SizedBox(
                   height: 10,
                 ),
