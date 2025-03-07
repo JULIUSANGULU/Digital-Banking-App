@@ -64,10 +64,9 @@ class _AddressDetailsState extends State<AddressDetails> {
                   SizedBox(
                     height: 10,
                   ),
-                  InputfieldDropdown(
+                  Inputfield(
                     label: 'City',
                     placeholder: 'Enter your city',
-                    options: ['Abuja', 'Lagos'],
                   ),
                   SizedBox(
                     height: 10,

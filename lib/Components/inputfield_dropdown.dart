@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class InputfieldDropdown extends StatefulWidget {
   final String label;
-  final List<String> options;
   final String placeholder;
-  final String? initialValue;
-  final Function(String?)? onChanged;
+  final List<DropdownItem> options;
+  final DropdownItem? initialValue;
+  final Function(DropdownItem?)? onChanged;
 
   const InputfieldDropdown({
     super.key,
@@ -21,7 +21,7 @@ class InputfieldDropdown extends StatefulWidget {
 }
 
 class _InputfieldDropdownState extends State<InputfieldDropdown> {
-  String? _selectedValue;
+  DropdownItem? _selectedValue;
   bool _isFocused = false;
 
   @override
@@ -69,20 +69,27 @@ class _InputfieldDropdownState extends State<InputfieldDropdown> {
                 ),
               ),
               child: DropdownButtonHideUnderline(
-                child: DropdownButton<String>(
+                child: DropdownButton<DropdownItem>(
                   value: _selectedValue,
                   isExpanded: true,
-                  hint: Text(
-                    widget.placeholder,
-                    style: const TextStyle(
-                      color: Color(0xFF979797),
-                      fontSize: 16,
-                      fontFamily: 'Open Sans',
-                      fontWeight: FontWeight.w400,
-                    ),
+                  hint: Row(
+                    children: [
+                      const Icon(Icons.list,
+                          color: Color(0xFF979797)), // Default icon
+                      const SizedBox(width: 8),
+                      Text(
+                        widget.placeholder,
+                        style: const TextStyle(
+                          color: Color(0xFF979797),
+                          fontSize: 16,
+                          fontFamily: 'Open Sans',
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
                   ),
                   icon: const Icon(Icons.arrow_drop_down, color: Colors.black),
-                  onChanged: (String? newValue) {
+                  onChanged: (DropdownItem? newValue) {
                     setState(() {
                       _selectedValue = newValue;
                       _isFocused = false; // Reset focus after selection
@@ -92,17 +99,23 @@ class _InputfieldDropdownState extends State<InputfieldDropdown> {
                     }
                   },
                   items: widget.options
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontFamily: 'Open Sans',
-                          fontWeight: FontWeight.w400,
-                        ),
+                      .map<DropdownMenuItem<DropdownItem>>((DropdownItem item) {
+                    return DropdownMenuItem<DropdownItem>(
+                      value: item,
+                      child: Row(
+                        children: [
+                          Icon(item.icon, color: Colors.black), // Custom icon
+                          const SizedBox(width: 8),
+                          Text(
+                            item.text,
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontFamily: 'Open Sans',
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
                       ),
                     );
                   }).toList(),
@@ -114,4 +127,12 @@ class _InputfieldDropdownState extends State<InputfieldDropdown> {
       ),
     );
   }
+}
+
+// Model for dropdown items with both icon and text
+class DropdownItem {
+  final IconData icon;
+  final String text;
+
+  DropdownItem({required this.icon, required this.text});
 }

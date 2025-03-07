@@ -65,7 +65,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                 InputfieldDropdown(
                   label: 'Nationality',
                   placeholder: 'Select your nationality',
-                  options: ['Nigerian'],
+                  options: [],
                 ),
                 SizedBox(
                   height: 10,
