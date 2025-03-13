@@ -10,20 +10,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository authRepository;
 
   AuthBloc({required this.authRepository}) : super(AuthInitial()) {
-    on<AuthLoginRequested>((event, emit) async {
+    on<AuthSignUpRequested>((event, emit) async {
       emit(AuthLoading());
       try {
-        final user =
-            await authRepository.signInWithEmail(event.email, event.password);
+        final user = await authRepository.signUpWithEmail(
+          name: event.name,
+          username: event.username,
+          email: event.email,
+          password: event.password,
+          accountType: event.accountType, // Passes the selected account type
+        );
         emit(AuthAuthenticated(user: user));
       } catch (e) {
         emit(AuthError(message: e.toString()));
       }
-    });
-
-    on<AuthLogoutRequested>((event, emit) async {
-      await authRepository.signOut();
-      emit(AuthUnauthenticated());
     });
   }
 }

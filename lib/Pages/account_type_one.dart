@@ -14,6 +14,8 @@ class AccountTypeOne extends StatefulWidget {
 }
 
 class _AccountTypeOneState extends State<AccountTypeOne> {
+  String selectedAccountType = "Personal"; // Default account type
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,41 +28,60 @@ class _AccountTypeOneState extends State<AccountTypeOne> {
               currentStep: 0,
             ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20),
           const HeaderOne(
             header: 'Choose the type of account that fits your needs.',
             textcolor: Color(0xFF979797),
           ),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(25, 50, 0, 0),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(25, 50, 0, 0),
             child: Row(
               children: [
                 AccountTypeSelector(
-                    label: 'Personal account',
-                    imagePath: 'lib/assets/images/image2.png'),
-                SizedBox(
-                  width: 50,
+                  label: 'Personal account',
+                  imagePath: 'lib/assets/images/image2.png',
+                  isSelected: selectedAccountType == "Personal",
+                  onTap: () {
+                    setState(() {
+                      selectedAccountType = "Personal";
+                    });
+                  },
                 ),
+                const SizedBox(width: 50),
                 AccountTypeSelector(
-                    label: 'Business account',
-                    imagePath: 'lib/assets/images/image3.png'),
+                  label: 'Business account',
+                  imagePath: 'lib/assets/images/image3.png',
+                  isSelected: selectedAccountType == "Business",
+                  onTap: () {
+                    setState(() {
+                      selectedAccountType = "Business";
+                    });
+                  },
+                ),
               ],
             ),
           ),
-          const SizedBox(
-            height: 200,
+          const SizedBox(height: 200),
+
+          // Dynamic message based on selection
+          ModalComponent(
+            text: selectedAccountType == "Personal"
+                ? 'Perfect for everyday banking needs, savings, and payments.'
+                : 'Great for managing business finances and transactions.',
           ),
-          const ModalComponent(
-            text: 'Perfect for everyday banking needs, savings, and payments.',
-          ),
-          const SizedBox(
-            height: 25,
-          ),
+
+          const SizedBox(height: 25),
+
+          // Proceed Button - Passes account type to the next screen
           GestureDetector(
             onTap: () async {
-              await Navigator.pushNamed(context, AppRoutes.personalinfo);
+              await Navigator.pushNamed(
+                context,
+                AppRoutes.personalinfo,
+                arguments: {
+                  "accountType": selectedAccountType
+                }, // Pass selection
+              );
             },
             child: const ButtonLg(
               name: 'Proceed',
@@ -68,9 +89,10 @@ class _AccountTypeOneState extends State<AccountTypeOne> {
               textColor: Color(0xFFF5F5F5),
             ),
           ),
-          const SizedBox(
-            height: 16,
-          ),
+
+          const SizedBox(height: 16),
+
+          // Go Back Button
           GestureDetector(
             onTap: () => Navigator.pop(context),
             child: const ButtonLg(

@@ -5,11 +5,19 @@ abstract class AuthEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class AuthLoginRequested extends AuthEvent {
+// Event for signing up a user
+class AuthSignUpRequested extends AuthEvent {
+  final String name;
+  final String username;
   final String email;
   final String password;
+  final String accountType; // New field
 
-  AuthLoginRequested({required this.email, required this.password});
+  AuthSignUpRequested({
+    required this.name,
+    required this.username,
+    required this.email,
+    required this.password,
+    required this.accountType, // Accepts Personal or Business
+  });
 }
-
-class AuthLogoutRequested extends AuthEvent {}
