@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "264419079364",
+    "project_id": "digital-bank-bankr-123",
+    "storage_bucket": "digital-bank-bankr-123.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264419079364:android:f802c86cb489fc56970591",
+        "android_client_info": {
+          "package_name": "com.example.digital_banking_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhEnP_AIeYRUlJIVxjW7oHrlKZBRmKHpc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
