@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class InputfieldDropdown extends StatefulWidget {
   final String label;
@@ -65,7 +66,7 @@ class _InputfieldDropdownState extends State<InputfieldDropdown> {
                   color: _isFocused
                       ? Theme.of(context).primaryColor
                       : Colors.transparent,
-                  width: 2, // Stroke width
+                  width: 2,
                 ),
               ),
               child: DropdownButtonHideUnderline(
@@ -74,8 +75,6 @@ class _InputfieldDropdownState extends State<InputfieldDropdown> {
                   isExpanded: true,
                   hint: Row(
                     children: [
-                      const Icon(Icons.list,
-                          color: Color(0xFF979797)), // Default icon
                       const SizedBox(width: 8),
                       Text(
                         widget.placeholder,
@@ -104,17 +103,13 @@ class _InputfieldDropdownState extends State<InputfieldDropdown> {
                       value: item,
                       child: Row(
                         children: [
-                          Icon(item.icon, color: Colors.black), // Custom icon
-                          const SizedBox(width: 8),
-                          Text(
-                            item.text,
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontFamily: 'Open Sans',
-                              fontWeight: FontWeight.w400,
-                            ),
+                          SvgPicture.asset(
+                            item.svgPath, // Use SVG instead of Icon
+                            width: 24,
+                            height: 24,
                           ),
+                          const SizedBox(width: 8),
+                          Text(item.text),
                         ],
                       ),
                     );
@@ -129,10 +124,10 @@ class _InputfieldDropdownState extends State<InputfieldDropdown> {
   }
 }
 
-// Model for dropdown items with both icon and text
+// Model for dropdown items with SVG images
 class DropdownItem {
-  final IconData icon;
+  final String svgPath; // Path to SVG asset
   final String text;
 
-  DropdownItem({required this.icon, required this.text});
+  DropdownItem({required this.svgPath, required this.text});
 }
