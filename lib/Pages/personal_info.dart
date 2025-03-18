@@ -77,7 +77,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                     Inputfield(
                       label: 'First Name',
                       placeholder:
-                          'Enter your full name as it appears on your ID',
+                          'Enter your first name as it appears on your ID',
                       controller: nameController,
                     ),
                     const SizedBox(height: 10),
@@ -101,10 +101,12 @@ class _PersonalInfoState extends State<PersonalInfo> {
                         DropdownItem(
                           svgPath: 'assets/icons/personal.svg',
                           text: 'Afghanistan',
+                          id: '1',
                         ),
                         DropdownItem(
-                          svgPath: 'assets/icons/business.svg',
+                          svgPath: 'assets/images/Nigeria.svg',
                           text: 'Nigeria',
+                          id: '2',
                         ),
                       ],
                       onChanged: (DropdownItem? selected) {

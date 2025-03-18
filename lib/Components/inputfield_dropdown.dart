@@ -71,7 +71,9 @@ class _InputfieldDropdownState extends State<InputfieldDropdown> {
               ),
               child: DropdownButtonHideUnderline(
                 child: DropdownButton<DropdownItem>(
-                  value: _selectedValue,
+                  value: widget.options.contains(_selectedValue)
+                      ? _selectedValue
+                      : null, // Ensure the selected value exists
                   isExpanded: true,
                   hint: Row(
                     children: [
@@ -93,9 +95,7 @@ class _InputfieldDropdownState extends State<InputfieldDropdown> {
                       _selectedValue = newValue;
                       _isFocused = false; // Reset focus after selection
                     });
-                    if (widget.onChanged != null) {
-                      widget.onChanged!(newValue);
-                    }
+                    widget.onChanged?.call(newValue);
                   },
                   items: widget.options
                       .map<DropdownMenuItem<DropdownItem>>((DropdownItem item) {
@@ -124,10 +124,19 @@ class _InputfieldDropdownState extends State<InputfieldDropdown> {
   }
 }
 
-// Model for dropdown items with SVG images
+// ✅ Updated DropdownItem Model with Unique ID and Equality Override
 class DropdownItem {
-  final String svgPath; // Path to SVG asset
+  final String id; // Unique identifier
+  final String svgPath;
   final String text;
 
-  DropdownItem({required this.svgPath, required this.text});
+  DropdownItem({required this.id, required this.svgPath, required this.text});
+
+  // ✅ Ensure uniqueness by comparing `id`
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) || (other is DropdownItem && other.id == id);
+
+  @override
+  int get hashCode => id.hashCode;
 }
