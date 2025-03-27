@@ -4,6 +4,7 @@ import 'package:digital_banking_app/Components/inputfield.dart';
 import 'package:digital_banking_app/Components/inputfield_dropdown.dart';
 import 'package:digital_banking_app/Components/progressbar.dart';
 import 'package:digital_banking_app/Components/subheader_text.dart';
+import 'package:digital_banking_app/Errorhandling/errorhandler.dart';
 import 'package:digital_banking_app/Routes/routers.dart';
 import 'package:digital_banking_app/blocs/auth_bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,31 @@ class _PersonalInfoState extends State<PersonalInfo> {
     }
   }
 
+  bool _validateFields() {
+    if (nameController.text.trim().isEmpty) {
+      ErrorHandler.showErrorDialog(context, "First Name is required.");
+      return false;
+    }
+    if (lastNameController.text.trim().isEmpty) {
+      ErrorHandler.showErrorDialog(context, "Last Name is required.");
+      return false;
+    }
+    if (emailController.text.trim().isEmpty) {
+      ErrorHandler.showErrorDialog(context, "Email Address is required.");
+      return false;
+    }
+    if (selectedNationality == "Select your nationality") {
+      ErrorHandler.showErrorDialog(context, "Please select your nationality.");
+      return false;
+    }
+    if (phoneController.text.trim().isEmpty) {
+      ErrorHandler.showErrorDialog(context, "Phone Number is required.");
+      return false;
+    }
+
+    return true; // All fields are valid
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
@@ -45,9 +71,8 @@ class _PersonalInfoState extends State<PersonalInfo> {
         if (state is AuthAuthenticated) {
           Navigator.pushReplacementNamed(context, '/home');
         } else if (state is AuthError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.message)),
-          );
+          ErrorHandler.showErrorDialog(
+              context, state.message); // Using the error handler
         }
       },
       child: Scaffold(
@@ -129,6 +154,31 @@ class _PersonalInfoState extends State<PersonalInfo> {
               const SizedBox(height: 44),
               GestureDetector(
                 onTap: () {
+                  String errorMessage = "";
+
+                  if (nameController.text.trim().isEmpty) {
+                    errorMessage += "First name is required.\n";
+                  }
+                  if (lastNameController.text.trim().isEmpty) {
+                    errorMessage += "Last name is required.\n";
+                  }
+                  if (emailController.text.trim().isEmpty) {
+                    errorMessage += "Email is required.\n";
+                  }
+                  if (selectedNationality == "Select your nationality") {
+                    errorMessage += "Please select your nationality.\n";
+                  }
+                  if (phoneController.text.trim().isEmpty) {
+                    errorMessage += "Phone number is required.\n";
+                  }
+
+                  if (errorMessage.isNotEmpty) {
+                    // ✅ Show error message with all missing fields
+                    ErrorHandler.showErrorDialog(context, errorMessage.trim());
+                    return; // ⛔ Stop further execution if fields are missing
+                  }
+
+                  // ✅ All fields are filled, proceed with signup
                   BlocProvider.of<AuthBloc>(context).add(AuthSignUpRequested(
                     name: nameController.text.trim(),
                     username:
@@ -137,8 +187,6 @@ class _PersonalInfoState extends State<PersonalInfo> {
                     password: "temporaryPassword",
                     accountType: selectedAccountType,
                   ));
-
-                  Navigator.pushNamed(context, AppRoutes.verifyyouridentity);
                 },
                 child: const ButtonLg(
                   name: 'Proceed',
